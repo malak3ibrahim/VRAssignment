@@ -1,6 +1,7 @@
 // PuzzleManager.cs
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PuzzleManager : MonoBehaviour
 {
@@ -39,12 +40,6 @@ public class PuzzleManager : MonoBehaviour
 
     public void RestartPuzzle()
     {
-        foreach (CubeLogic cube in cubes)
-        {
-            cube.ResetCube();
-        }
-
-        if (successPanel != null)
-            successPanel.SetActive(false); // Hide Canvas again
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
