@@ -7,17 +7,17 @@ public class PuzzleManager : MonoBehaviour
     public static PuzzleManager Instance;
 
     public CubeLogic[] cubes;
-    public GameObject successPanel;
+    public GameObject successPanel; // Assign this in the Inspector
     public AudioClip successSound;
 
-    private void Awake()
+    void Awake()
     {
         Instance = this;
     }
 
     public void CheckPuzzle()
     {
-        foreach (var cube in cubes)
+        foreach (CubeLogic cube in cubes)
         {
             if (!cube.isPlaced)
                 return;
@@ -29,7 +29,7 @@ public class PuzzleManager : MonoBehaviour
     void ShowSuccess()
     {
         if (successPanel != null)
-            successPanel.SetActive(true);
+            successPanel.SetActive(true); // Make Canvas appear
 
         if (successSound != null)
             AudioSource.PlayClipAtPoint(successSound, Camera.main.transform.position);
@@ -39,12 +39,12 @@ public class PuzzleManager : MonoBehaviour
 
     public void RestartPuzzle()
     {
-        foreach (var cube in cubes)
+        foreach (CubeLogic cube in cubes)
         {
             cube.ResetCube();
         }
 
         if (successPanel != null)
-            successPanel.SetActive(false);
+            successPanel.SetActive(false); // Hide Canvas again
     }
 }
